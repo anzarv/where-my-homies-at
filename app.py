@@ -78,7 +78,7 @@ with col3:
         user_input = "L"
 
 # Test variables
-current_day = 1
+current_day = 3
 current_hour = 16
 current_minute = 0
 
@@ -150,7 +150,7 @@ if user_input == "A":
                 st.success("✅ All classes finished for today!")
     # Thursday (3) or Saturday (5)
 
-    elif current_day == 6 or current_day == 1:
+    elif current_day == 3 or current_day == 5:
         st.subheader("Anzar's Thursday / Saturday Tracker")
 
         found_now = False
