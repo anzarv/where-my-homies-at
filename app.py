@@ -77,6 +77,11 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
+# Test variables
+current_day = 6
+current_hour = 13
+current_minute = 0
+
 now_mins = (current_hour * 60) + current_minute
 
 if user_input == "A":
