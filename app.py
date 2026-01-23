@@ -103,12 +103,57 @@ if user_input == "A":
                 if display_h == 0: display_h = 12  # Handle 12:00
 
                 st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
-                st.metric(label="Time Remaining", value=countdown_text)
+                st.metric(label="Time til next class:", value=countdown_text)
             else:
                 # This happens if it's after 5:50 PM
                 st.write("✅ All classes finished for today!")
 
+if user_input == "L":
+    # Sunday (6) or Tuesday (1)
+    if current_day == 6 or current_day == 1:
+        st.subheader("Labiba's Sunday / Tuesday Tracker")
 
+        # 1. Check if CURRENTLY in class
+        found_now = False
+        for start, end, name in labubu_sun_tue:
+            if start <= now_mins <= end:
+                st.success(f"📍 Currently in: {name}")
+                found_now = True
+                break
+
+                # 2. If NOT in class, find the NEXT one
+        if not found_now:
+            st.write("❌ Not in class right now.")
+
+            next_class = None
+            for start, end, name in labubu_sun_tue:
+                if start > now_mins:
+                    next_class = (start, end, name)
+                    break
+
+            if next_class:
+                start_time = next_class[0]
+                class_name = next_class[2]
+
+                # Countdown math
+                mins_to_go = start_time - now_mins
+                hours_left = mins_to_go // 60
+                rem_mins = mins_to_go % 60
+
+                countdown_text = f"{hours_left}h {rem_mins}m" if hours_left > 0 else f"{rem_mins}m"
+
+                # Start time formatting
+                start_h = start_time // 60
+                start_m = start_time % 60
+                period = "PM" if start_h >= 12 else "AM"
+                display_h = start_h - 12 if start_h > 12 else start_h
+                if display_h == 0: display_h = 12  # Handle 12:00
+
+                st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
+                st.metric(label="Time til next class:", value=countdown_text)
+            else:
+                # This happens if it's after 5:50 PM
+                st.write("✅ All classes finished for today!")
 
 
 
