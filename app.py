@@ -54,7 +54,7 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 8
+current_hour = 20
 current_day = 6
 current_minute = 40
 
@@ -106,8 +106,7 @@ if user_input == "A":
             else:
                 # This happens if it's after 5:50 PM
                 st.write("✅ All classes finished for today!")
-    else:
-        st.write("🌴 No classes scheduled for today. Enjoy!")
+
 
 
 if user_input == "L":
