@@ -61,56 +61,53 @@ current_minute = 40
 now_mins = (current_hour * 60) + current_minute
 
 if user_input == "A":
-    if current_day == 6 or 1:  # Sunday or Tuesday
+    # Sunday (6) or Tuesday (1)
+    if current_day == 6 or current_day == 1:
         st.subheader("Anzar's Sunday / Tuesday Tracker")
 
-        # 1. Check current status
+        # 1. Check if CURRENTLY in class
         found_now = False
         for start, end, name in anzar_sun_tue:
             if start <= now_mins <= end:
                 st.success(f"📍 Currently in: {name}")
                 found_now = True
+                break
 
-        # If Anzar is in his free period, he's at the gym or library (unique to him)
-        if 870 <= now_mins <= 980:
-            found_now = False
+                # 2. If NOT in class, find the NEXT one
+        if not found_now:
+            st.write("❌ Not in class right now.")
 
-            # 2. Only show "Next Class" if he is NOT in one right now
-            if not found_now:
-                st.write("❌ Not in class right now.")
+            next_class = None
+            for start, end, name in anzar_sun_tue:
+                if start > now_mins:
+                    next_class = (start, end, name)
+                    break
 
-                next_class = None
-                for start, end, name in anzar_sun_tue:
-                    if start > now_mins:
-                        next_class = (start, end, name)  # Added end for completeness
-                        break
+            if next_class:
+                start_time = next_class[0]
+                class_name = next_class[2]
 
-                if next_class:
-                    start_time = next_class[0]
-                    class_name = next_class[2]
+                # Countdown math
+                mins_to_go = start_time - now_mins
+                hours_left = mins_to_go // 60
+                rem_mins = mins_to_go % 60
 
-                    # --- NEW CALCULATION ---
-                    mins_to_go = start_time - now_mins
-                    hours_left = mins_to_go // 60
-                    rem_mins = mins_to_go % 60
+                countdown_text = f"{hours_left}h {rem_mins}m" if hours_left > 0 else f"{rem_mins}m"
 
-                    # Make the countdown look nice
-                    if hours_left > 0:
-                        countdown_text = f"{hours_left}h {rem_mins}m"
-                    else:
-                        countdown_text = f"{rem_mins} minutes"
-                    # -----------------------
+                # Start time formatting
+                start_h = start_time // 60
+                start_m = start_time % 60
+                period = "PM" if start_h >= 12 else "AM"
+                display_h = start_h - 12 if start_h > 12 else start_h
+                if display_h == 0: display_h = 12  # Handle 12:00
 
-                    # Math to make the start time look pretty (e.g., 4:30 PM)
-                    start_h = start_time // 60
-                    start_m = start_time % 60
-                    period = "PM" if start_h >= 12 else "AM"
-                    display_h = start_h - 12 if start_h > 12 else start_h
-
-                    st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
-                    st.metric(label="Time til next class:", value=countdown_text)
-                else:
-                    st.write("✅ All done for today!")
+                st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
+                st.metric(label="Time Remaining", value=countdown_text)
+            else:
+                # This happens if it's after 5:50 PM
+                st.write("✅ All classes finished for today!")
+    else:
+        st.write("🌴 No classes scheduled for today. Enjoy!")
 
 
 if user_input == "L":
