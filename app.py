@@ -14,21 +14,23 @@ user_input = st.text_input("Type something here:")
 # This shows the output only after you type something
 
 
-if user_input:
-    st.write("The Magic Box says:")
-    st.header(user_input.upper()) # This makes your input BIG and LOUD
+# if user_input:
+   #  st.write("The Magic Box says:")
+   #  st.header(user_input.upper()) # This makes your input BIG and LOUD
 
-st.title("Local Time App")
+st.title("My Local Time App")
 
-# This tiny bit of 'JavaScript' asks the phone for its own clock
-# it returns the time in "milliseconds" (a very long number)
+# 1. Ask the browser for the time as a number
 client_time = st_javascript("Date.now()")
 
 if client_time:
-    # We turn that long number into a readable time
-    from datetime import datetime
-
+    # 2. We turn that number into a 'timestamp'
+    # and tell it to display exactly what the browser sees
     readable_time = datetime.fromtimestamp(client_time / 1000)
 
-    st.write("On your device, the time is:")
-    st.header(readable_time.strftime("%I:%M %p"))  # Shows as 02:30 PM
+    st.write("The time on your device is:")
+
+    # This formats it: %I is hour, %M is minute, %p is AM/PM
+    st.header(readable_time.strftime("%I:%M %p"))
+else:
+    st.write("Checking your watch... ⌚")
