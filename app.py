@@ -25,8 +25,21 @@ st.header(local_time.strftime("%A, %I:%M %p"))
 
 # Finding who you're looking for
 
-user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'L' for Labubu: ").capitalize()
+st.write("Who you looking for dawg?")
 
+# Create three columns so the buttons are side-by-side
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if st.button("Anzar"):
+        user_input = "A"
+with col2:
+    if st.button("Elhussy"):
+        user_input = "E"
+with col3:
+    if st.button("Labubu"):
+        user_input = "L"
+        
 current_hour = 12
 current_day = 1
 current_minute = 20
