@@ -84,71 +84,80 @@ current_minute = 0
 
 now_mins = (current_hour * 60) + current_minute
 
+# 4. Anzar's Logic
 if user_input == "A":
-    # Sunday (6) or Tuesday (1)
-    if user_input == "A":
-        if current_day == 6 or current_day == 1:
-            st.subheader("Anzar's Sunday / Tuesday Tracker")
+    # Determine which schedule to use
+    schedule = []
+    day_name = ""
 
-            found_now = False
-            for start, end, name in anzar_sun_tue:
-                if start <= now_mins <= end:
-                    # IMPORTANT: We check if it's a REAL class (not the Free Period)
-                    if "Free Period" not in name:
-                        st.success(f"📍 Currently in: {name}")
-                        found_now = True
+    if current_day == 6 or current_day == 1:
+        schedule = anzar_sun_tue
+        day_name = "Sunday / Tuesday"
+    elif current_day == 3 or current_day == 5:
+        schedule = anzar_thurs_sat
+        day_name = "Thursday / Saturday"
 
-                        # --- NEW: TIME UNTIL CLASS ENDS ---
-                        mins_left_in_class = end - now_mins
+    if schedule:
+        st.subheader(f"Anzar's {day_name} Tracker")
+        found_now = False
 
-                        # Formatting the end time for display
-                        end_h = end // 60
-                        end_m = end % 60
-                        period = "PM" if end_h >= 12 else "AM"
-                        display_end_h = end_h - 12 if end_h > 12 else end_h
-                        if display_end_h == 0: display_end_h = 12
+        # --- PART A: CHECK CURRENT STATUS ---
+        for start, end, name in schedule:
+            if start <= now_mins <= end:
+                # If it's a real class, show the "In Class" UI
+                if "Free Period" not in name:
+                    st.success(f"📍 Currently in: {name}")
+                    found_now = True
 
-                        st.info(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
-                        st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
-                        # ----------------------------------
-                        break
-            if 870 <= now_mins <= 980:
-                st.success(f"📍 Currently in: Free Period (Gym/Library/Cafeteria")
+                    # Math for Class Countdown
+                    mins_left = end - now_mins
+                    h_left, m_left = divmod(mins_left, 60)
+                    remaining_text = f"{h_left}h {m_left}m" if h_left > 0 else f"{m_left}m"
 
-                # 2. If NOT in class, find the NEXT one
-                if not found_now:
-                    st.error("❌ Not in class right now.")
+                    # Pretty print end time
+                    end_h, end_m = divmod(end, 60)
+                    p = "PM" if end_h >= 12 else "AM"
+                    disp_h = end_h - 12 if end_h > 12 else end_h
+                    if disp_h == 0: disp_h = 12
 
-                    next_class = None
-                    for start, end, name in anzar_sun_tue:
-                        if start > now_mins:
-                            next_class = (start, end, name)
-                            break
+                    st.write(f"🕒 This class ends at {disp_h}:{end_m:02d} {p}")
+                    st.metric(label="Time remaining in class:", value=remaining_text)
+                    break
+                else:
+                    # It is the Free Period range
+                    st.success(f"📍 Currently in: {name}")
+                    # We leave found_now = False so the "Next Class" countdown shows below
 
-                    if next_class:
-                        start_time = next_class[0]
-                        class_name = next_class[2]
+        # --- PART B: SHOW NEXT CLASS (If not in a real class) ---
+        if not found_now:
+            if not (880 <= now_mins <= 970):  # If not even in Free Period
+                st.error("❌ Not in class right now.")
 
-                        # Countdown math
-                        mins_to_go = start_time - now_mins
-                        hours_left = mins_to_go // 60
-                        rem_mins = mins_to_go % 60
+            next_class = None
+            for start, end, name in schedule:
+                if start > now_mins:
+                    next_class = (start, end, name)
+                    break
 
-                        countdown_text = f"{hours_left}h {rem_mins}m" if hours_left > 0 else f"{rem_mins}m"
+            if next_class:
+                start_time, end_time, class_name = next_class
 
-                        # Start time formatting
-                        start_h = start_time // 60
-                        start_m = start_time % 60
-                        period = "PM" if start_h >= 12 else "AM"
-                        display_h = start_h - 12 if start_h > 12 else start_h
-                        if display_h == 0: display_h = 12  # Handle 12:00
+                # Math for Next Class Countdown
+                wait_mins = start_time - now_mins
+                h_wait, m_wait = divmod(wait_mins, 60)
+                wait_text = f"{h_wait}h {m_wait}m" if h_wait > 0 else f"{m_wait}m"
 
-                        st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
-                        st.metric(label="Time til next class:", value=countdown_text)
-                    else:
-                        # This happens if it's after 5:50 PM
-                        st.success("✅ All classes finished for today!")
+                # Pretty print start time
+                sh, sm = divmod(start_time, 60)
+                sp = "PM" if sh >= 12 else "AM"
+                sdh = sh - 12 if sh > 12 else sh
+                if sdh == 0: sdh = 12
 
+                st.info(f"⏭️ **Next Class:** {class_name} at {sdh}:{sm:02d} {sp}")
+                st.metric(label="Time til next class:", value=wait_text)
+            else:
+                st.success("✅ All classes finished for today!")
     else:
-        st.success("😎 No classes today brah.")
+        # This handles Friday (4), Monday (0), Wednesday (2)
+        st.success("😎 No classes today brah. Enjoy the vibes.")
 
