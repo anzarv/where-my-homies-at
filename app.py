@@ -70,8 +70,9 @@ if user_input == "A":
         for start, end, name in anzar_sun_tue:
             if start <= now_mins <= end:
                 st.success(f"📍 Currently in: {name}")
-                found_now = True
-                break
+                if not 870 <= now_mins <= 980:
+                    found_now = True
+                    break
 
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
