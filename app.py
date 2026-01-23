@@ -240,7 +240,7 @@ if user_input == "L":
         st.success("😎 No classes today brah. Enjoy the vibes.")
 
 # 6. Elhussy's Logic
-if user_input == "L":
+if user_input == "E":
     # Determine which schedule to use
     schedule = []
     day_name = ""
