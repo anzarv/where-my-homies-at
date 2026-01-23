@@ -49,7 +49,7 @@ if user_input == "A":
         if current_day == 6 or 1:  # Sunday or Tuesday
             st.subheader("Anzar's Sunday / Tuesday Schedule")
 
-            if (current_hour == 13) or (current_hour == 14 and current_minute <= 30):
+            if (current_hour == 13) or (current_hour == 14 and current_minute <= 29):
                 st.write("📍 In Class: ECO101 (NAC 605)")
                 st.write("Floor number 6 of NAC.")
             elif (current_hour == 14 and current_minute >= 30) or (current_hour == 15) or (current_hour == 16 and current_minute <= 20):
