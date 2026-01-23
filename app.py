@@ -9,24 +9,29 @@ st.write("Made by Anzar")
 
 st.write("Enter 'A' for Anzar, 'E' for Elhussy, 'B' for Labubu")
 
-# This creates a box for you to type in
-user_input = st.text_input("Type something here:")
-
-# This shows the output only after you type something
-
-if user_input:
-   st.write("The Magic Box says:")
-   st.header(user_input.upper()) # This makes your input BIG and LOUD
-
-# 1. Define the GMT+6 timezone
-# In the coding world, GMT+6 is often represented by 'Asia/Dhaka' or 'Etc/GMT-6'
-# (Note: GMT offsets in 'Etc/' are often inverted, so we use a fixed offset)
+# Finding the current time in GMT+6
 target_timezone = pytz.timezone('Asia/Dhaka')
-
-# 2. Get the current time in that timezone
 local_time = datetime.now(target_timezone)
+st.write("The current time in Dhaka is:")
+st.header(local_time.strftime("%A, %I:%M %p"))
 
-# 3. Show it on the screen
-st.write("The current time in GMT+6 is:")
-st.header(local_time.strftime("%I:%M %p"))
+# Get the current hour (0 to 23)
+current_hour = local_time.hour
+
+# Get the current day of the week (0 is Monday, 4 is Friday, etc.)
+current_day = local_time.weekday()
+
+
+# Finding who you're looking for
+running = True
+
+while running:
+   user_input = st.text_input("Type the name of the person you're searching for here: ")
+   if user_input == "A":
+      if current_day == 4:
+         st.write("Enjoy your Friday, Anzar!")
+
+
+
+
 
