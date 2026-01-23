@@ -92,8 +92,6 @@ if user_input == "A":
 
             found_now = False
             for start, end, name in anzar_sun_tue:
-                if 870 <= now_mins <= 980:
-                    st.success(f"📍 Currently in: {name}")
                 if start <= now_mins <= end:
                     # IMPORTANT: We check if it's a REAL class (not the Free Period)
                     if "Free Period" not in name:
