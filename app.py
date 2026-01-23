@@ -161,3 +161,80 @@ if user_input == "A":
         # This handles Friday (4), Monday (0), Wednesday (2)
         st.success("😎 No classes today brah. Enjoy the vibes.")
 
+
+# 4. Labubu's Logic
+if user_input == "L":
+    # Determine which schedule to use
+    schedule = []
+    day_name = ""
+
+    if current_day == 6 or current_day == 1:
+        schedule = labubu_sun_tue
+        day_name = "Sunday / Tuesday"
+    elif current_day == 3 or current_day == 5:
+        schedule = labubu_thurs_sat
+        day_name = "Thursday / Saturday"
+
+    if schedule:
+        st.subheader(f"Anzar's {day_name} Tracker")
+        found_now = False
+
+        # --- PART A: CHECK CURRENT STATUS ---
+        for start, end, name in schedule:
+            if start <= now_mins <= end:
+                # If it's a real class, show the "In Class" UI
+                if "Free Period" not in name:
+                    st.success(f"📍 Currently in: {name}")
+                    found_now = True
+
+                    # Math for Class Countdown
+                    mins_left = end - now_mins
+                    h_left, m_left = divmod(mins_left, 60)
+                    remaining_text = f"{h_left}h {m_left}m" if h_left > 0 else f"{m_left}m"
+
+                    # Pretty print end time
+                    end_h, end_m = divmod(end, 60)
+                    p = "PM" if end_h >= 12 else "AM"
+                    disp_h = end_h - 12 if end_h > 12 else end_h
+                    if disp_h == 0: disp_h = 12
+
+                    st.write(f"🕒 This class ends at {disp_h}:{end_m:02d} {p}")
+                    st.metric(label="Time remaining in class:", value=remaining_text)
+                    break
+                else:
+                    # It is the Free Period range
+                    st.success(f"📍 Currently in: {name}")
+                    # We leave found_now = False so the "Next Class" countdown shows below
+
+        # --- PART B: SHOW NEXT CLASS (If not in a real class) ---
+        if not found_now:
+            if not (880 <= now_mins <= 970):  # If not even in Free Period
+                st.error("❌ Not in class right now.")
+
+            next_class = None
+            for start, end, name in schedule:
+                if start > now_mins:
+                    next_class = (start, end, name)
+                    break
+
+            if next_class:
+                start_time, end_time, class_name = next_class
+
+                # Math for Next Class Countdown
+                wait_mins = start_time - now_mins
+                h_wait, m_wait = divmod(wait_mins, 60)
+                wait_text = f"{h_wait}h {m_wait}m" if h_wait > 0 else f"{m_wait}m"
+
+                # Pretty print start time
+                sh, sm = divmod(start_time, 60)
+                sp = "PM" if sh >= 12 else "AM"
+                sdh = sh - 12 if sh > 12 else sh
+                if sdh == 0: sdh = 12
+
+                st.info(f"⏭️ **Next Class:** {class_name} at {sdh}:{sm:02d} {sp}")
+                st.metric(label="Time til next class:", value=wait_text)
+            else:
+                st.success("✅ All classes finished for today!")
+    else:
+        # This handles Friday (4), Monday (0), Wednesday (2)
+        st.success("😎 No classes today brah. Enjoy the vibes.")
