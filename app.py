@@ -27,9 +27,9 @@ st.header(local_time.strftime("%A, %I:%M %p"))
 
 user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'L' for Labubu: ")
 
-current_hour = 13
+current_hour = 14
 current_day = 6
-current_minute = 20
+current_minute = 0
 
 if user_input == "A":
         if current_day == 6:  # Saturday
@@ -37,12 +37,14 @@ if user_input == "A":
 
             if (current_hour == 13) or (current_hour == 14 and current_minute <= 30):
                 st.write("📍 In Class: ECO101 (NAC 605)")
-            elif 10 <= current_hour < 12:
-                st.write("📍 In Class: MAT120 (NAC 502)")
-            elif 14 == current_hour and 30 <= current_minute <= 45:
-                st.write("📍 Free Time: Probably at the Cafeteria")
+                st.write("Floor number 6 of NAC.")
+            elif (current_hour == 14) or (current_hour == 16 and current_minute <= 20):
+                st.write("😎 Free Period.")
+                st.write("I'm probably at the NSU gym or central library at this time.")
+            elif (current_hour == 16) or (current_hour == 17 and current_minute <= 50):
+                st.write("📍 In Class: ENG103 (NAC 203)")
             else:
-                st.write("📍 Off-campus or chilling")
+                st.write("🤠 Not in class yet.")
 
 
 
