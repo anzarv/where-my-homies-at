@@ -15,13 +15,21 @@ st.write("--------")
 st.header(local_time.strftime("%A, %I:%M %p"))
 
 # Get the current minute (0 to 59)
-# current_minute = local_time.minute
+current_minute = local_time.minute
 
 # Get the current hour (0 to 23)
-# current_hour = local_time.hour
+current_hour = local_time.hour
 
 # Get the current day of the week (0 is Monday, 4 is Friday, etc.)
-# current_day = local_time.weekday()
+current_day = local_time.weekday()
+
+# Everyone's schedules
+
+anzar_sun_tue = [
+    (780, 870, "ECO101 (NAC 605)"),
+    (990, 1070, "ENG103 (NAC 203)"),
+    ()
+]
 
 # Finding who you're looking for
 
@@ -42,26 +50,36 @@ with col3:
         user_input = "L"
 
 current_hour = 16
-current_day = 1
+current_day = 6
 current_minute = 30
 
+now_mins = (current_hour * 60) + current_minute
+
 if user_input == "A":
-        if current_day == 6 or 1:  # Sunday or Tuesday
-            st.subheader("Anzar's Sunday / Tuesday Schedule")
+    if current_day == 6:  # Sunday
+        st.subheader("Anzar's Sunday Tracker")
 
-            if (current_hour == 13) or (current_hour == 14 and current_minute <= 29): # 1:00 PM to 2:29 PM
-                st.write("📍 In Class: ECO101 (NAC 605)")
-                st.write("Floor number 6 of NAC.")
-            elif (current_hour == 14 and current_minute >= 30) or (current_hour == 15) or (current_hour == 16 and current_minute <= 19): # 2:30 PM to 4:19 PM
-                st.write("😎 Free Period.")
-                st.write("I'm probably at the NSU gym or central library at this time.")
-            elif (current_hour == 16 and current_minute >= 20) or (current_hour == 17 and current_minute <= 50): # 4:20 PM to 5:50 PM
-                st.write("📍 In Class: ENG103 (NAC 203)")
-            else:
-                st.write("🤠 Not in class yet.")
+        # 1. Check current status
+        found_now = False
+        for start, end, name in anzar_sun_tue:
+            if start <= now_mins <= end:
+                st.success(f"📍 Currently in: {name}")
+                found_now = True
 
-        elif current_day == 3 or 5:  # Thursday or Saturday
-            st.subheader("Anzar's Thursday / Saturday Schedule")
+        if not found_now:
+            st.write("🏠 Not in class right now.")
+
+        # 2. Find and show next class
+        next_class = None
+        for start, end, name in anzar_sun_tue:
+            if start > now_mins:
+                next_class = (start, name)
+                break
+
+        if next_class:
+            st.warning(f"⏳ Next up: {next_class[1]} at {next_class[0] // 60}:{next_class[0] % 60:02d}")
+
+
 
 
 
