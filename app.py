@@ -43,7 +43,7 @@ labubu_sun_tue = [
 ]
 
 labubu_thurs_sat = [
-    (780, 870, "BIO103 (NAC310)"),
+    (780, 870, "BIO103 (NAC301)"),
     (880, 970, "CHE101 (SAC407)")
 ]
 
