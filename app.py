@@ -26,6 +26,7 @@ st.header(local_time.strftime("%A, %I:%M %p"))
 # Finding who you're looking for
 
 st.write("Who you looking for dawg?")
+user_input = None
 
 # Create three columns so the buttons are side-by-side
 col1, col2, col3 = st.columns(3)
@@ -39,11 +40,10 @@ with col2:
 with col3:
     if st.button("Labubu"):
         user_input = "L"
-        
+
 current_hour = 12
 current_day = 1
 current_minute = 20
-user_input = None
 
 if user_input == "A":
         if current_day == 6 or 1:  # Saturday
