@@ -75,9 +75,6 @@ if user_input == "A":
         if 870 <= now_mins <= 980:
             found_now = False
 
-        if not found_now:
-            st.write("❌ Not in class right now.")
-
             # 2. Only show "Next Class" if he is NOT in one right now
             if not found_now:
                 st.write("❌ Not in class right now.")
@@ -111,9 +108,11 @@ if user_input == "A":
                     display_h = start_h - 12 if start_h > 12 else start_h
 
                     st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
-                    st.metric(label="Time Remaining", value=countdown_text)
+                    st.metric(label="Time til next class:", value=countdown_text, end=" ")
                 else:
                     st.write("✅ All done for today!")
+
+
 if user_input == "L":
     if current_day == 6 or 1:  # Sunday or Tuesday
         st.subheader("Labiba's Sunday / Tuesday Tracker")
