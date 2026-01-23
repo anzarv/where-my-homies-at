@@ -27,9 +27,9 @@ st.header(local_time.strftime("%A, %I:%M %p"))
 
 user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'L' for Labubu: ")
 
-current_hour = 14
+current_hour = 16
 current_day = 6
-current_minute = 0
+current_minute = 20
 
 if user_input == "A":
         if current_day == 6:  # Saturday
