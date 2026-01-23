@@ -112,6 +112,10 @@ if user_input == "A":
                         st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
                         # ----------------------------------
                         break
+                if 870 <= now_mins <= 980:
+                    st.success(f"📍 Currently in: {name}")
+                    break
+
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
             st.error("❌ Not in class right now.")
