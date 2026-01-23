@@ -22,7 +22,6 @@ current_hour = local_time.hour
 
 # Get the current day of the week (0 is Monday, 4 is Friday, etc.)
 current_day = local_time.weekday()
-st.write(f"Today is {current_day}")
 
 # Everyone's schedules
 
