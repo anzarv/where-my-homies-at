@@ -43,6 +43,7 @@ with col3:
 current_hour = 12
 current_day = 1
 current_minute = 20
+user_input = None
 
 if user_input == "A":
         if current_day == 6 or 1:  # Saturday
