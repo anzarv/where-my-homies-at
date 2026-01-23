@@ -27,8 +27,8 @@ current_day = local_time.weekday()
 
 anzar_sun_tue = [
     (780, 870, "ECO101 (NAC 605)"),
-    (990, 1070, "ENG103 (NAC 203)"),
-    ()
+    (870, 980, "Free Period (Gym/Library)"),
+    (990, 1070, "ENG103 (NAC 203)")
 ]
 
 # Finding who you're looking for
