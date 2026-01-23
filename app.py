@@ -41,24 +41,28 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 12
+current_hour = 14
 current_day = 1
-current_minute = 20
+current_minute = 30
 
 if user_input == "A":
-        if current_day == 6 or 1:  # Saturday
+        if current_day == 6 or 1:  # Sunday or Tuesday
             st.subheader("Anzar's Sunday / Tuesday Schedule")
 
             if (current_hour == 13) or (current_hour == 14 and current_minute <= 30):
                 st.write("📍 In Class: ECO101 (NAC 605)")
                 st.write("Floor number 6 of NAC.")
-            elif (current_hour == 14) or (current_hour == 16 and current_minute <= 20):
+            elif (current_hour == 14 and current_minute >= 30) or (current_hour == 15) or (current_hour == 16 and current_minute <= 20):
                 st.write("😎 Free Period.")
                 st.write("I'm probably at the NSU gym or central library at this time.")
             elif (current_hour == 16) or (current_hour == 17 and current_minute <= 50):
                 st.write("📍 In Class: ENG103 (NAC 203)")
             else:
                 st.write("🤠 Not in class yet.")
+
+        elif current_day == 3 or 5:  # Thursday or Saturday
+            st.subheader("Anzar's Thursday / Saturday Schedule")
+
 
 
 
