@@ -128,7 +128,7 @@ if user_input == "A":
                 # This happens if it's after 5:50 PM
                 st.success("✅ All classes finished for today!")
     # Thursday (3) or Saturday (5)
-    elif current_day == 3 or 5:
+    elif current_day == 3 or current_day == 5:
         st.subheader("Anzar's Thursday / Saturday Tracker")
 
         # 1. Check if CURRENTLY in class
@@ -225,7 +225,7 @@ if user_input == "L":
                 st.success("✅ All classes finished for today!")
 
     # Thursday (3) or Saturday (5)
-    elif current_day == 3 or 5:
+    elif current_day == 3 or current_day == 5:
         st.subheader("Labiba's Thursday / Saturday Tracker")
 
         # 1. Check if CURRENTLY in class
@@ -322,7 +322,7 @@ if user_input == "E":
                 st.success("✅ All classes finished for today!")
 
     # Thursday (3) or Saturday (5)
-    elif current_day == 3 or 5:
+    elif current_day == 3 or current_day == 5:
         st.subheader("Elhan's Thursday / Saturday Tracker")
 
         # 1. Check if CURRENTLY in class
