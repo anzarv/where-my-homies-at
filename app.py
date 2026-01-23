@@ -108,7 +108,7 @@ if user_input == "A":
                     display_h = start_h - 12 if start_h > 12 else start_h
 
                     st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
-                    st.metric(label="Time til next class:", value=countdown_text, end=" ")
+                    st.metric(label="Time til next class:", value=countdown_text)
                 else:
                     st.write("✅ All done for today!")
 
