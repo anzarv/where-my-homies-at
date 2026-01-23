@@ -31,6 +31,11 @@ anzar_sun_tue = [
     (990, 1070, "ENG103 (NAC 203)")
 ]
 
+labubu_sun_tue = [
+    (780, 870, "ENG103 (SAC 309)"),
+    (870, 980, "Free Period"),
+    (990, 1070, "MAT116 (NAC 513)")
+]
 # Finding who you're looking for
 
 st.write("Who you looking for dawg?")
@@ -49,7 +54,7 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 14
+current_hour = 20
 current_day = 6
 current_minute = 40
 
