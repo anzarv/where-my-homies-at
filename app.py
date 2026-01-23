@@ -77,7 +77,7 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 3
+current_hour = 22
 current_day = 3
 current_minute = 40
 
@@ -99,7 +99,7 @@ if user_input == "A":
 
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
-            st.write("❌ Not in class right now.")
+            st.error("❌ Not in class right now.")
 
             next_class = None
             for start, end, name in anzar_sun_tue:
@@ -145,7 +145,7 @@ if user_input == "A":
 
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
-            st.write("❌ Not in class right now.")
+            st.error("❌ Not in class right now.")
 
             next_class = None
             for start, end, name in anzar_sun_tue:
@@ -194,7 +194,7 @@ if user_input == "L":
 
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
-            st.write("❌ Not in class right now.")
+            st.error("❌ Not in class right now.")
 
             next_class = None
             for start, end, name in labubu_sun_tue:
