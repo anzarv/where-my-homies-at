@@ -25,10 +25,11 @@ current_day = local_time.weekday()
 
 # Finding who you're looking for
 
-user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'B' for Labubu: ")
+user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'L' for Labubu: ")
 if user_input == "A":
-   if current_hour == 14:
-         st.write("Anzar is not in class right now.")
+   if current_day == 4:
+       if current_hour == 14 and current_minute >= 30:
+           st.write("Anzar is not in class right now.")
 
 
 
