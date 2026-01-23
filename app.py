@@ -49,7 +49,7 @@ labubu_thurs_sat = [
 
 elhussy_sun_tue = [
     (780, 870, "ENG103 (NAC409)"),
-    (880, 970, "PSY101 (NAC215")
+    (880, 970, "PSY101 (NAC215)")
 ]
 
 elhussy_thurs_sat = [
