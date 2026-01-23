@@ -97,7 +97,7 @@ if user_input == "A":
 
 if user_input == "L":
     if current_day == 6 or 1:  # Sunday or Tuesday
-        st.subheader("Anzar's Sunday / Tuesday Tracker")
+        st.subheader("Labiba's Sunday / Tuesday Tracker")
 
         # 1. Check current status
         found_now = False
