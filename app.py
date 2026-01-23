@@ -92,6 +92,8 @@ if user_input == "A":
 
             found_now = False
             for start, end, name in anzar_sun_tue:
+                if 870 <= now_mins <= 980:
+                    st.success(f"📍 Currently in: {name}")
                 if start <= now_mins <= end:
                     # IMPORTANT: We check if it's a REAL class (not the Free Period)
                     if "Free Period" not in name:
@@ -112,9 +114,7 @@ if user_input == "A":
                         st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
                         # ----------------------------------
                         break
-                if 870 <= now_mins <= 980:
-                    st.success(f"📍 Currently in: {name}")
-                    break
+
 
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
