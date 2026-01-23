@@ -54,7 +54,7 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 14
+current_hour = 8
 current_day = 6
 current_minute = 40
 
