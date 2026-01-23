@@ -27,7 +27,7 @@ current_day = local_time.weekday()
 
 anzar_sun_tue = [
     (780, 870, "ECO101 (NAC 605)"),
-    (870, 980, "Free Period (Gym/Library)"),
+    (870, 980, "Free Period (Gym/Library/Cafeteria)"),
     (990, 1070, "ENG103 (NAC 203)")
 ]
 
@@ -49,15 +49,15 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 16
+current_hour = 14
 current_day = 6
-current_minute = 30
+current_minute = 40
 
 now_mins = (current_hour * 60) + current_minute
 
 if user_input == "A":
-    if current_day == 6:  # Sunday
-        st.subheader("Anzar's Sunday Tracker")
+    if current_day == 6 or 1:  # Sunday or Tuesday
+        st.subheader("Anzar's Sunday / Tuesday Tracker")
 
         # 1. Check current status
         found_now = False
@@ -66,18 +66,30 @@ if user_input == "A":
                 st.success(f"📍 Currently in: {name}")
                 found_now = True
 
+        if 870 <= now_mins <= 980:
+            found_now = False
+
         if not found_now:
-            st.write("🏠 Not in class right now.")
+            st.write("❌ Not in class right now.")
 
         # 2. Find and show next class
         next_class = None
         for start, end, name in anzar_sun_tue:
             if start > now_mins:
                 next_class = (start, name)
-                break
+                break  # Stop at the very next one
 
         if next_class:
-            st.warning(f"⏳ Next up: {next_class[1]} at {next_class[0] // 60}:{next_class[0] % 60:02d}")
+            # Math to make time look pretty (e.g., 4:30 PM)
+            start_h = next_class[0] // 60
+            start_m = next_class[0] % 60
+            period = "PM" if start_h >= 12 else "AM"
+            display_h = start_h - 12 if start_h > 12 else start_h
+
+            st.info(f"⏭️ **Next Class:** {next_class[1]} at {display_h}:{start_m:02d} {period}")
+        else:
+            st.write("✅ All done for today!")
+
 
 
 
