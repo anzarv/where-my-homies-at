@@ -3,7 +3,7 @@ import pytz
 from datetime import datetime
 
 # Title screen
-st.title("Where My Homies At❓")
+st.title("Where Are My Homies At❓")
 st.write("This application will help you find where your homies are at during their NSU campus schedule.")
 st.write("Made by Anzar. If you find any bugs, please message me and let me know.")
 
