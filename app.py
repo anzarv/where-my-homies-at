@@ -32,13 +32,13 @@ user_input = None
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.button("Anzar"):
+    if st.button("👅 Anzar"):
         user_input = "A"
 with col2:
-    if st.button("Elhussy"):
+    if st.button("😿 Elhussy"):
         user_input = "E"
 with col3:
-    if st.button("Labubu"):
+    if st.button("🐥 Labubu"):
         user_input = "L"
 
 current_hour = 12
