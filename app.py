@@ -93,25 +93,24 @@ if user_input == "A":
             found_now = False
             for start, end, name in anzar_sun_tue:
                 if start <= now_mins <= end:
-                    # IMPORTANT: We check if it's a REAL class (not the Free Period)
-                    if "Free Period" not in name:
-                        st.success(f"📍 Currently in: {name}")
-                        found_now = True
+                    st.success(f"📍 Currently in: {name}")
+                    found_now = True
 
-                        # --- NEW: TIME UNTIL CLASS ENDS ---
-                        mins_left_in_class = end - now_mins
+                    # --- NEW: TIME UNTIL CLASS ENDS ---
+                    mins_left_in_class = end - now_mins
 
-                        # Formatting the end time for display
-                        end_h = end // 60
-                        end_m = end % 60
-                        period = "PM" if end_h >= 12 else "AM"
-                        display_end_h = end_h - 12 if end_h > 12 else end_h
-                        if display_end_h == 0: display_end_h = 12
+                    # Formatting the end time for display
+                    end_h = end // 60
+                    end_m = end % 60
+                    period = "PM" if end_h >= 12 else "AM"
+                    display_end_h = end_h - 12 if end_h > 12 else end_h
+                    if display_end_h == 0: display_end_h = 12
 
-                        st.info(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
-                        st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
-                        # ----------------------------------
-                        break
+                    st.info(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
+                    st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
+                    # ----------------------------------
+                    break
+
 
 
                 # 2. If NOT in class, find the NEXT one
