@@ -79,7 +79,7 @@ with col3:
 
 # Test variables
 current_day = 6
-current_hour = 13
+current_hour = 16
 current_minute = 0
 
 now_mins = (current_hour * 60) + current_minute
@@ -94,7 +94,7 @@ if user_input == "A":
             for start, end, name in anzar_sun_tue:
                 if start <= now_mins <= end:
                     # IMPORTANT: We check if it's a REAL class (not the Free Period)
-                    if "Free Period" not in name:
+                    if "Free Period (Gym/Library/Cafeteria)" not in name:
                         st.success(f"📍 Currently in: {name}")
                         found_now = True
 
@@ -108,7 +108,7 @@ if user_input == "A":
                         display_end_h = end_h - 12 if end_h > 12 else end_h
                         if display_end_h == 0: display_end_h = 12
 
-                        st.write(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
+                        st.info(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
                         st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
                         # ----------------------------------
                         break
