@@ -79,8 +79,8 @@ with col3:
 
 # Test variables
 current_day = 1
-current_hour = 16
-current_minute = 11
+current_hour = 12
+current_minute = 35
 
 now_mins = (current_hour * 60) + current_minute
 
