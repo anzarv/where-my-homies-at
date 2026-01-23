@@ -1,5 +1,7 @@
+import datetime
 import streamlit as st
 from streamlit_javascript import st_javascript
+
 
 # Title screen
 st.title("Where My Homies At?")
@@ -13,24 +15,29 @@ user_input = st.text_input("Type something here:")
 
 # This shows the output only after you type something
 
-
-# if user_input:
-   #  st.write("The Magic Box says:")
-   #  st.header(user_input.upper()) # This makes your input BIG and LOUD
+if user_input:
+   st.write("The Magic Box says:")
+   st.header(user_input.upper()) # This makes your input BIG and LOUD
+import streamlit as st
+from streamlit_javascript import st_javascript
+from datetime import datetime
 
 st.title("My Local Time App")
 
-# 1. Ask the browser for the time as a number
+# Ask the phone for the time
 client_time = st_javascript("Date.now()")
 
-if client_time:
-    # 2. We turn that number into a 'timestamp'
-    # and tell it to display exactly what the browser sees
-    readable_time = datetime.fromtimestamp(client_time / 1000)
+# Check if we have the time yet
+if client_time is not None and client_time > 0:
+    # Convert milliseconds to a datetime object
+    # We add a "timedelta" if the server is stubbornly showing UTC
+    # Since you were 6 hours off, we subtract 6 hours (or add, depending on your zone)
+    raw_time = datetime.fromtimestamp(client_time / 1000)
 
-    st.write("The time on your device is:")
+    st.write("Your local time is:")
+    st.header(raw_time.strftime("%I:%M %p"))
 
-    # This formats it: %I is hour, %M is minute, %p is AM/PM
-    st.header(readable_time.strftime("%I:%M %p"))
+elif client_time == 0:
+    st.warning("Still waiting for your device to respond...")
 else:
-    st.write("Checking your watch... ⌚")
+    st.info("Loading your clock... ⌚")
