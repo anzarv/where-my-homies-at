@@ -86,18 +86,32 @@ now_mins = (current_hour * 60) + current_minute
 
 if user_input == "A":
     # Sunday (6) or Tuesday (1)
-    if current_day == 6 or current_day == 1:
-        st.subheader("Anzar's Sunday / Tuesday Tracker")
+    if user_input == "A":
+        if current_day == 6 or current_day == 1:
+            st.subheader("Anzar's Sunday / Tuesday Tracker")
 
-        # 1. Check if CURRENTLY in class
-        found_now = False
-        for start, end, name in anzar_sun_tue:
-            if start <= now_mins <= end:
-                st.success(f"📍 Currently in: {name}")
-                if not 870 <= now_mins <= 980:
-                    found_now = True
-                    break
+            found_now = False
+            for start, end, name in anzar_sun_tue:
+                if start <= now_mins <= end:
+                    # IMPORTANT: We check if it's a REAL class (not the Free Period)
+                    if "Free Period" not in name:
+                        st.success(f"📍 Currently in: {name}")
+                        found_now = True
 
+                        # --- NEW: TIME UNTIL CLASS ENDS ---
+                        mins_left_in_class = end - now_mins
+
+                        # Formatting the end time for display
+                        end_h = end // 60
+                        end_m = end % 60
+                        period = "PM" if end_h >= 12 else "AM"
+                        display_end_h = end_h - 12 if end_h > 12 else end_h
+                        if display_end_h == 0: display_end_h = 12
+
+                        st.write(f"🕒 This class ends at {display_end_h}:{end_m:02d} {period}")
+                        st.metric(label="Time remaining in class:", value=f"{mins_left_in_class}m")
+                        # ----------------------------------
+                        break
                 # 2. If NOT in class, find the NEXT one
         if not found_now:
             st.error("❌ Not in class right now.")
