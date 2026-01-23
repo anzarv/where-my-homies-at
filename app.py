@@ -71,30 +71,49 @@ if user_input == "A":
                 st.success(f"📍 Currently in: {name}")
                 found_now = True
 
+        # If Anzar is in his free period, he's at the gym or library (unique to him)
         if 870 <= now_mins <= 980:
             found_now = False
 
         if not found_now:
             st.write("❌ Not in class right now.")
 
-        # 2. Find and show next class
-        next_class = None
-        for start, end, name in anzar_sun_tue:
-            if start > now_mins:
-                next_class = (start, name)
-                break  # Stop at the very next one
+            # 2. Only show "Next Class" if he is NOT in one right now
+            if not found_now:
+                st.write("❌ Not in class right now.")
 
-        if next_class:
-            # Math to make time look pretty (e.g., 4:30 PM)
-            start_h = next_class[0] // 60
-            start_m = next_class[0] % 60
-            period = "PM" if start_h >= 12 else "AM"
-            display_h = start_h - 12 if start_h > 12 else start_h
+                next_class = None
+                for start, end, name in anzar_sun_tue:
+                    if start > now_mins:
+                        next_class = (start, end, name)  # Added end for completeness
+                        break
 
-            st.info(f"⏭️ **Next Class:** {next_class[1]} at {display_h}:{start_m:02d} {period}")
-        else:
-            st.success("✅ All done for today!")
+                if next_class:
+                    start_time = next_class[0]
+                    class_name = next_class[2]
 
+                    # --- NEW CALCULATION ---
+                    mins_to_go = start_time - now_mins
+                    hours_left = mins_to_go // 60
+                    rem_mins = mins_to_go % 60
+
+                    # Make the countdown look nice
+                    if hours_left > 0:
+                        countdown_text = f"{hours_left}h {rem_mins}m"
+                    else:
+                        countdown_text = f"{rem_mins} minutes"
+                    # -----------------------
+
+                    # Math to make the start time look pretty (e.g., 4:30 PM)
+                    start_h = start_time // 60
+                    start_m = start_time % 60
+                    period = "PM" if start_h >= 12 else "AM"
+                    display_h = start_h - 12 if start_h > 12 else start_h
+
+                    st.info(f"⏭️ **Next Class:** {class_name} at {display_h}:{start_m:02d} {period}")
+                    st.metric(label="Time Remaining", value=countdown_text)
+                else:
+                    st.write("✅ All done for today!")
 if user_input == "L":
     if current_day == 6 or 1:  # Sunday or Tuesday
         st.subheader("Labiba's Sunday / Tuesday Tracker")
