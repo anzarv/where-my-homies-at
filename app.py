@@ -23,16 +23,11 @@ current_hour = local_time.hour
 # Get the current day of the week (0 is Monday, 4 is Friday, etc.)
 current_day = local_time.weekday()
 
-
-
-
-
 # Finding who you're looking for
 
 user_input = st.text_input("Enter 'A' for Anzar, 'E' for Elhussy, 'B' for Labubu: ")
 if user_input == "A":
    if current_day == 4:
-      if current_hour == 2:
          st.write("Anzar is not in class right now.")
 
 
