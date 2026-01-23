@@ -25,11 +25,10 @@ current_day = local_time.weekday()
 # Finding who you're looking for
 running = True
 
-while running:
-   user_input = st.text_input("Type the name of the person you're searching for here: ")
-   if user_input == "A":
-      if current_day == 4:
-         st.write("Enjoy your Friday, Anzar!")
+user_input = st.text_input("Type the name of the person you're searching for here: ")
+if user_input == "A":
+   if current_day == 4:
+      st.write("Enjoy your Friday, Anzar!")
 
 
 
