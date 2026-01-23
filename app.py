@@ -54,7 +54,7 @@ with col3:
     if st.button("🐥 Labubu"):
         user_input = "L"
 
-current_hour = 20
+current_hour = 14
 current_day = 6
 current_minute = 40
 
@@ -93,7 +93,7 @@ if user_input == "A":
 
             st.info(f"⏭️ **Next Class:** {next_class[1]} at {display_h}:{start_m:02d} {period}")
         else:
-            st.write("✅ All done for today!")
+            st.success("✅ All done for today!")
 
 if user_input == "L":
     if current_day == 6 or 1:  # Sunday or Tuesday
@@ -128,7 +128,7 @@ if user_input == "L":
 
             st.info(f"⏭️ **Next Class:** {next_class[1]} at {display_h}:{start_m:02d} {period}")
         else:
-            st.write("✅ All done for today!")
+            st.success("✅ All done for today!")
 
 
 
