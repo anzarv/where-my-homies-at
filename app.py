@@ -28,18 +28,18 @@ current_day = local_time.weekday()
 anzar_sun_tue = [
     (780, 870, "ECO101 (NAC 605)"),
     (870, 980, "Free Period (Gym/Library/Cafeteria)"),
-    (990, 1070, "ENG103 (NAC 203)")
+    (980, 1070, "ENG103 (NAC 203)")
 ]
 
 anzar_thurs_sat = [
     (780, 870, "ACT201 (NAC410)"),
-    (880, 970, "BUS112 (NAC207")
+    (880, 970, "BUS112 (NAC207)")
 ]
 
 labubu_sun_tue = [
     (780, 870, "ENG103 (SAC 309)"),
     (870, 980, "Free Period"),
-    (990, 1070, "MAT116 (NAC 513)")
+    (980, 1070, "MAT116 (NAC 513)")
 ]
 
 labubu_thurs_sat = [
@@ -55,7 +55,7 @@ elhussy_sun_tue = [
 elhussy_thurs_sat = [
     (780, 870, "ECO101 (NAC412)"),
     (870, 980, "Free Period"),
-    (990, 1070, "BUS112 (SAC208)")
+    (980, 1070, "BUS112 (SAC208)")
 
 ]
 
@@ -78,9 +78,9 @@ with col3:
         user_input = "L"
 
 # Test variables
-# current_day = 1
-# current_hour = 14
-# current_minute = 35
+current_day = 6
+current_hour = 16
+current_minute = 0
 
 now_mins = (current_hour * 60) + current_minute
 
