@@ -315,3 +315,46 @@ if user_input == "E":
     else:
         # This handles Friday (4), Monday (0), Wednesday (2)
         st.success("😎 No classes today brah. Enjoy the vibes.")
+
+# --- LIVE STATUS DASHBOARD ---
+st.write("---")
+st.header("📍 Homie Dashboard")
+
+# Create a list of all homies and their data for easy looping
+homies = [
+    {"name": "Anzar", "sun_tue": anzar_sun_tue, "thu_sat": anzar_thurs_sat},
+    {"name": "Labubu", "sun_tue": labubu_sun_tue, "thu_sat": labubu_thurs_sat},
+    {"name": "Elhan", "sun_tue": elhussy_sun_tue, "thu_sat": elhussy_thurs_sat},
+]
+
+cols = st.columns(3)
+
+for i, homie in enumerate(homies):
+    with cols[i]:
+        # Select correct schedule
+        if current_day in [6, 1]:
+            current_sched = homie["sun_tue"]
+        elif current_day in [3, 5]:
+            current_sched = homie["thu_sat"]
+        else:
+            current_sched = []
+
+        status_found = False
+        if not current_sched:
+            st.metric(label=homie["name"], value="Vibing", delta="No Classes Today")
+        else:
+            for start, end, name in current_sched:
+                if start <= now_mins <= end:
+                    status_found = True
+                    if "Free" in name:
+                        st.metric(label=homie["name"], value="Free Period", delta="Available")
+                    else:
+                        st.metric(label=homie["name"], value="In Class", delta=f"{name}")
+
+            if not status_found:
+                # Check if classes are over or haven't started
+                last_class_end = current_sched[-1][1]
+                if now_mins > last_class_end:
+                    st.metric(label=homie["name"], value="Done", delta="Left Campus")
+                else:
+                    st.metric(label=homie["name"], value="Not in yet", delta="Coming soon")
