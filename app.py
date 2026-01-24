@@ -78,9 +78,9 @@ with col3:
         user_input = "L"
 
 # Test variables
-# current_day = 5
-# current_hour = 16
-# current_minute = 20
+current_day = 4
+current_hour = 16
+current_minute = 20
 
 now_mins = (current_hour * 60) + current_minute
 
@@ -323,7 +323,7 @@ st.header("📍 Homie Dashboard")
 # Create a list of all homies and their data for easy looping
 homies = [
     {"name": "Anzar", "sun_tue": anzar_sun_tue, "thu_sat": anzar_thurs_sat},
-    {"name": "Labubu", "sun_tue": labubu_sun_tue, "thu_sat": labubu_thurs_sat},
+    {"name": "Labiba", "sun_tue": labubu_sun_tue, "thu_sat": labubu_thurs_sat},
     {"name": "Elhan", "sun_tue": elhussy_sun_tue, "thu_sat": elhussy_thurs_sat},
 ]
 
