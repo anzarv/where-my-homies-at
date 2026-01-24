@@ -78,7 +78,7 @@ with col3:
         user_input = "L"
 
 # Test variables
-current_day = 6
+current_day = 5
 current_hour = 16
 current_minute = 0
 
