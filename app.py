@@ -323,8 +323,8 @@ st.header("📍 Homie Dashboard")
 # Create a list of all homies and their data for easy looping
 homies = [
     {"name": "Anzar", "sun_tue": anzar_sun_tue, "thu_sat": anzar_thurs_sat},
-    {"name": "Labiba", "sun_tue": labubu_sun_tue, "thu_sat": labubu_thurs_sat},
     {"name": "Elhan", "sun_tue": elhussy_sun_tue, "thu_sat": elhussy_thurs_sat},
+    {"name": "Labiba", "sun_tue": labubu_sun_tue, "thu_sat": labubu_thurs_sat},
 ]
 
 cols = st.columns(3)
