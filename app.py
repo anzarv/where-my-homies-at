@@ -78,9 +78,9 @@ with col3:
         user_input = "L"
 
 # Test variables
-current_day = 5
-current_hour = 16
-current_minute = 20
+# current_day = 5
+# current_hour = 16
+# current_minute = 20
 
 now_mins = (current_hour * 60) + current_minute
 
