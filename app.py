@@ -7,9 +7,8 @@ st.set_page_config(page_title="NSU Homie Tracker", page_icon="📍")
 
 st.title("Where Are My Homies At❓")
 st.write("Find where the homies are during their NSU campus schedule.")
-st.caption("Made by Anzar. Message for bugs."
-           "Update Changelog:"
-           "22/02/2026 - Ramadan schedule change + code optimization")
+st.caption("Made by Anzar. Message for bugs.")
+st.caption("22/02/26 - Updated to Ramadan schedule + optimization")
 
 
 # Time Setup
