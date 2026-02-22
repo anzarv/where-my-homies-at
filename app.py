@@ -7,7 +7,10 @@ st.set_page_config(page_title="NSU Homie Tracker", page_icon="📍")
 
 st.title("Where Are My Homies At❓")
 st.write("Find where the homies are during their NSU campus schedule.")
-st.caption("Made by Anzar. Message for bugs.")
+st.caption("Made by Anzar. Message for bugs."
+           "Update Changelog:"
+           "22/02/2026 - Ramadan schedule change + code optimization")
+
 
 # Time Setup
 target_timezone = pytz.timezone('Asia/Dhaka')
@@ -22,18 +25,39 @@ current_day = now.weekday()  # 0=Mon, 6=Sun
 homie_data = {
     "A": {
         "name": "Anzar", "emoji": "👅",
-        "sun_tue": [(780, 870, "ECO101 (NAC 605)"), (870, 980, "Free Period"), (980, 1070, "ENG103 (NAC 203)")],
-        "thu_sat": [(780, 870, "ACT201 (NAC410)"), (880, 970, "BUS112 (NAC207)")]
+        "sun_tue": [
+            (735, 810, "ECO101 (NAC 605)"),
+            (810, 820, "Free Period"),
+            (820, 895, "ENG103 (NAC 203)")
+        ],
+        "thu_sat": [
+            (735, 810, "ACT201 (NAC410)"),
+            (820, 895, "BUS112 (NAC207)")
+        ]
     },
     "E": {
         "name": "Elhan", "emoji": "😿",
-        "sun_tue": [(780, 870, "ENG103 (NAC409)"), (880, 970, "PSY101 (NAC215)")],
-        "thu_sat": [(780, 870, "ECO101 (NAC412)"), (870, 980, "Free Period"), (980, 1070, "BUS112 (SAC208)")]
+        "sun_tue": [
+            (735, 810, "ENG103 (NAC409)"),
+            (820, 895, "PSY101 (NAC215)")
+        ],
+        "thu_sat": [
+            (735, 810, "ECO101 (NAC412)"),
+            (810, 820, "Free Period"),
+            (820, 895, "BUS112 (SAC208)")
+        ]
     },
     "L": {
         "name": "Labiba", "emoji": "🐥",
-        "sun_tue": [(780, 870, "ENG103 (SAC 309)"), (870, 980, "Free Period"), (980, 1070, "MAT116 (NAC 513)")],
-        "thu_sat": [(780, 870, "BIO103 (NAC301)"), (880, 970, "CHE101 (SAC407)")]
+        "sun_tue": [
+            (735, 810, "ENG103 (SAC 309)"),
+            (810, 820, "Free Period"),
+            (820, 895, "MAT116 (NAC 513)")
+        ],
+        "thu_sat": [
+            (735, 810, "BIO103 (NAC301)"),
+            (820, 895, "CHE101 (SAC407)")
+        ]
     }
 }
 
