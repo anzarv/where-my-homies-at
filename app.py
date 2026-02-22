@@ -26,8 +26,8 @@ homie_data = {
         "name": "Anzar", "emoji": "👅",
         "sun_tue": [
             (735, 810, "ECO101 (NAC 605)"),
-            (810, 820, "Free Period"),
-            (820, 895, "ENG103 (NAC 203)")
+            (810, 905, "Free Period"),
+            (905, 980, "ENG103 (NAC 203)")
         ],
         "thu_sat": [
             (735, 810, "ACT201 (NAC410)"),
@@ -42,8 +42,8 @@ homie_data = {
         ],
         "thu_sat": [
             (735, 810, "ECO101 (NAC412)"),
-            (810, 820, "Free Period"),
-            (820, 895, "BUS112 (SAC208)")
+            (810, 905, "Free Period"),
+            (905, 980, "BUS112 (SAC208)")
         ]
     },
     "L": {
